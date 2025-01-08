@@ -8,7 +8,7 @@ const Header = ({head}) => {
   )  
 }
 
-const Total = (props) => {
+const Statistics = (props) => {
   const all = props.good + props.neutral + props.bad
   const average = (props.good - props.bad) / all
   const positive = (props.good / all) * 100
@@ -48,7 +48,7 @@ const App = () => {
         <Button handleClick = {() => setBad(bad + 1)} text = "bad"/>
       </div>
       <Header head={statistics} />
-      <Total good={good} neutral={neutral} bad={bad}/>
+      <Statistics good={good} neutral={neutral} bad={bad}/>
     </div>
   )
 }
