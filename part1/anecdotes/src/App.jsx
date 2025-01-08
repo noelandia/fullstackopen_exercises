@@ -1,5 +1,13 @@
 import { useState } from 'react'
 
+const Header = ({text}) => {
+  return (
+    <div>
+      <h1>{text}</h1>
+    </div>
+  )
+}
+
 const Boton = ({text, onClick}) => {
   return (
     <div>
@@ -39,10 +47,14 @@ const App = () => {
   
   return (
     <div>
+      <Header text="Anecdote of the day"/>
       {anecdotes[selected]}
       <div>has {puntos[selected]} votes</div>
       <Boton text="vote" onClick={votar}/>
       <Boton text="next anecdote" onClick={generaNumRandom}/>
+      <Header text="Anecdote with most votes"/>
+      <div>{anecdotes[puntos.indexOf(Math.max(...puntos))]}</div>
+      <div>has {Math.max(...puntos)} votes</div>
     </div>
   )
 }
