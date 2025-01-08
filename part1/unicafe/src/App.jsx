@@ -41,11 +41,14 @@ const Button = (props) => (
 
 const StatisticsLine = (props) => {
   return (
-    <div>
-      <p>{props.text} {props.value}</p>
-    </div>
+    <tr>
+      <Statistic data={props.text} />
+      <Statistic data={props.value} />
+    </tr>
   )
 }
+
+const Statistic = ({data}) => (<td>{data}</td>)
 
 const App = () => {
   // guarda los clics de cada botón en su propio estado
