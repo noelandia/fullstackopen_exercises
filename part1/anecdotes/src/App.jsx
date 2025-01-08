@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-const Boton = ({text, length, setSelected}) => {
-  const numRandom = Math.floor(Math.random().toFixed(2) * length)
+const Boton = ({text, onClick}) => {
   return (
     <div>
-      <button onClick={() => setSelected(numRandom)}>
+      <button onClick={onClick}>
         {text}
       </button>
     </div>
@@ -24,11 +23,26 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [puntos, setPuntos] = useState(new Array(anecdotes.length).fill(0))
+
+  const generaNumRandom = () => {
+    const numRandom = Math.floor(Math.random() * anecdotes.length)
+    console.log(numRandom);
+    setSelected(numRandom);
+  }
+
+  const votar = () => {
+    const copia = [...puntos]
+    copia[selected] = copia[selected] + 1
+    setPuntos(copia)
+  }
   
   return (
     <div>
       {anecdotes[selected]}
-      <Boton text="next anecdote" length={anecdotes.length} setSelected={setSelected}/>
+      <div>has {puntos[selected]} votes</div>
+      <Boton text="vote" onClick={votar}/>
+      <Boton text="next anecdote" onClick={generaNumRandom}/>
     </div>
   )
 }
